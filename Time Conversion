@@ -1,0 +1,46 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+#
+# Complete the 'timeConversion' function below.
+#
+# The function is expected to return a STRING.
+# The function accepts STRING s as parameter.
+#
+
+def timeConversion(s):
+    # Write your code here
+    hour = s[:2]
+    meridian = s[8:]
+    result = s[2:8]
+    after = int(hour)
+
+    if hour == "12" and meridian == 'AM':
+        result = '00' + result
+    elif hour != "12" and meridian == 'AM':
+        result = hour + result
+    elif hour == "12" and meridian == "PM":
+        result = hour + result
+    elif hour != "12" and meridian == "PM":
+        after += 12
+        result = str(after) + result
+        
+    return result
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    s = input()
+
+    result = timeConversion(s)
+
+    fptr.write(result + '\n')
+
+    fptr.close()
+
+
